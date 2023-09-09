@@ -11,6 +11,8 @@ import { SafeAreaView, StyleSheet, Text, useColorScheme} from 'react-native';
 
 import WelcomeScreen from './src/screens/welcomeScreen/WelcomeScreen';
 import LoginScreen from './src/screens/loginScreen/LoginScreen';
+import SignUpScreen from './src/screens/SignUpScreen/SignUpScreen';
+import Navigation from './src/navigation/Navigation';
 
 
 import {
@@ -23,7 +25,7 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView style={styles.root}>
-      <LoginScreen />
+      <Navigation/>
     </SafeAreaView>
   );
 }

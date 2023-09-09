@@ -5,19 +5,21 @@ interface CustomInputProps {
     value: string;
     setValue: (text: string) => void;
     placeholder: string;
+    isPassword?: boolean;
+ 
 }
 
-const CustomInput = ({value, setValue, placeholder}: CustomInputProps) => {
+const CustomInput = ({value, setValue, placeholder, isPassword = false}: CustomInputProps) => {
   const {height} = useWindowDimensions();
   return (
     <View style = {styles.container}>
       <TextInput 
-        height = {height * 0.05}
+        
         value = {value}
         onChangeText = {setValue}
         placeholder= {placeholder}
-        style = {styles.input}
-        secureTextEntry = {placeholder === 'Password'}
+        style = {[styles.input, {height: height * 0.06}]}
+        secureTextEntry = {isPassword}
        />
     </View>
   )
@@ -26,7 +28,7 @@ const CustomInput = ({value, setValue, placeholder}: CustomInputProps) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        width: '100%',
+        width: '90%',
         borderColor: 'black',
         borderWidth: 1,
         borderRadius: 10,
@@ -34,7 +36,12 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         
     },
-    input: {},
+    input: {
+        fontSize: 18,
+        //make text color black
+        color: 'black',
+        
+    },
 })
 
 export default CustomInput
