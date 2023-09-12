@@ -31,8 +31,8 @@ const SignUpScreen = (): JSX.Element => {
 
     const navigation = useNavigation<SignUpScreenProp>();
     const SignUp = () => {
-        console.warn('Sign up');
-        //navigation.navigate('Login');
+        console.warn('you Signed up');
+        navigation.navigate('Selection');
     }
 
     //move to sign in page

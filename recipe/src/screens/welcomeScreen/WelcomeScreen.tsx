@@ -19,10 +19,12 @@ const WelcomeScreen = (): JSX.Element => {
 
     const onLoginNavigate = () => {
         
-
         console.warn('Navigate to Login');
-       
         navigation.navigate('Login');
+    }
+    const onSignUpNavigate = () => {
+        console.warn('Navigate to Sign Up');
+        navigation.navigate('SignUp');
     }
 
   return (
@@ -32,7 +34,7 @@ const WelcomeScreen = (): JSX.Element => {
 
 
       <CustomButton text = "login" onPress = {onLoginNavigate} />
-      <CustomButton text = "register" onPress = {() => console.warn('Navigate to Register')} />
+      <CustomButton text = "register" onPress = {onSignUpNavigate} />
     </View>
   );
 }

@@ -19,7 +19,7 @@ const LoginScreen = (): JSX.Element => {
     const navigation = useNavigation<SignUpScreenProp>();
     const onLogin= () => {
         console.warn('Log in');
-        navigation.navigate('Login');
+        navigation.navigate('Selection');
         
     }
     
