@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
 interface CustomButtonProps {
-  onPress: (input: string) => void; // Define the type for onPress
+  onPress: (input: string, isPressed: boolean) => void; // Define the type for onPress
   text: string; // Assuming text is a string
   fgColor?: string; // Assuming fgColor is a string
   widthSize?: any;
@@ -19,8 +19,9 @@ const ToggleButton = ({onPress, text, fgColor, widthSize}: CustomButtonProps) =>
   return (
     <Pressable 
     
-      onPress={onPress.bind(null, text)} 
+      onPress={onPress.bind(null, text, pressed)} 
       onPressIn={togglePressed}
+      
       style={[
         styles.container, 
         widthSize ? {width: widthSize} : {},

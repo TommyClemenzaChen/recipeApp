@@ -14,6 +14,9 @@ const CustomInput = ({value, setValue, placeholder, isPassword = false}: CustomI
   return (
     <View style = {styles.container}>
       <TextInput 
+        autoCapitalize='none'
+        autoCorrect={false}
+        autoComplete='off'
         
         value = {value}
         onChangeText = {setValue}

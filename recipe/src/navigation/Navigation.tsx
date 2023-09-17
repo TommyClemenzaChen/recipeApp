@@ -7,12 +7,14 @@ import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
 import LoginScreen from '../screens/loginScreen/LoginScreen';
 import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
 import SelectionScreen from '../screens/SelectionScreen/SelectionScreen';
+import HomeScreen from '../screens/homeScreen/HomeScreen';
 
 export type RootStackParamList = {
   Welcome: undefined;
   Login: undefined;
   SignUp: undefined;
   Selection: undefined;
+  Home: undefined;
   
 };
 
@@ -26,6 +28,7 @@ const Navigation = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen name="Selection" component={SelectionScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} />
             
         </Stack.Navigator>
     </NavigationContainer>

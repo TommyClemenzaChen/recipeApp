@@ -1,4 +1,4 @@
-import { View, Text, useWindowDimensions , StyleSheet, Image} from 'react-native'
+import { View, Text, useWindowDimensions , StyleSheet, Image, Alert} from 'react-native'
 import React, { useState } from 'react'
 import Logo from '../../../assets/images/logo.png'
 import CustomButton from '../../components/customButton/CustomButton'
@@ -6,6 +6,7 @@ import CustomInput from '../../components/CustomInput/CustomInput'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/Navigation';
+import { auth } from '../../Authentication/firebase'
 
 type SignUpScreenProp = StackNavigationProp<RootStackParamList, 'SignUp'>; 
 
@@ -18,8 +19,27 @@ const LoginScreen = (): JSX.Element => {
 
     const navigation = useNavigation<SignUpScreenProp>();
     const onLogin= () => {
-        console.warn('Log in');
-        navigation.navigate('Selection');
+        auth.
+            signInWithEmailAndPassword(username, password).
+            then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+                navigation.navigate('Selection');
+            })
+            .catch(error => {
+                if (error.code === 'auth/wrong-password') {
+                    Alert.alert('Wrong password');
+                } else {
+                    Alert.alert(error.message);
+                }
+
+            });
+        console.log(username);
+        console.log(password);
+    
+
+
+       
         
     }
     

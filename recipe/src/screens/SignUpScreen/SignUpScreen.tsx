@@ -1,4 +1,4 @@
-import { View, Text, useWindowDimensions , StyleSheet, Image} from 'react-native'
+import { View, Text, useWindowDimensions , StyleSheet, Image, Alert} from 'react-native'
 import React, { useState } from 'react'
 
 import navBar from '../../../assets/images/navBar.png'
@@ -7,6 +7,7 @@ import CustomInput from '../../components/CustomInput/CustomInput'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/Navigation';
+import { auth } from '../../Authentication/firebase'
 
 type SignUpScreenProp = StackNavigationProp<RootStackParamList, 'SignUp'>; 
 
@@ -29,10 +30,25 @@ const SignUpScreen = (): JSX.Element => {
     const[confirmPassword, setConfirmPassword] = useState('');
     const[email, setEmail] = useState('');
 
+    
+
     const navigation = useNavigation<SignUpScreenProp>();
     const SignUp = () => {
         console.warn('you Signed up');
-        navigation.navigate('Selection');
+        auth.
+            createUserWithEmailAndPassword(email, password).
+            then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+                navigation.navigate('Selection');
+            })
+            .catch(error => Alert.alert(error.message));
+        
+
+        console.log(email);
+        console.log(password);
+
+        
     }
 
     //move to sign in page

@@ -15,15 +15,35 @@ const SelectionScreen = () => {
   const {height} = useWindowDimensions();
     const navigation = useNavigation<SignUpScreenProp>();
     const [searchInterest, setSearchInterest] = useState<string>('');
+
+    const [interests, setInterests] = useState<string[]>([]);
     
 
     const finishSelection = () => {
         console.warn('finish selection');
-        navigation.navigate('Welcome');
+        for (let i = 0; i < interests.length; i++) {
+            console.log(interests[i]);
+        }
+        setInterests([]);
+        
+
+        navigation.navigate('Home');
+
     }
 
-  const addInterest = (text: string) => {
+  const editInterest = (text: string, isPressed: boolean) => {
         console.warn(text)
+
+        // If the button has already been pressed, remove it from the list of interests
+        if (!isPressed) {
+            setInterests(interests.filter((interest) => interest !== text));
+            return;
+        }
+
+        if (interests.includes(text)) {
+            return;
+        }
+        setInterests([...interests, text]);  
         
     }
 
@@ -39,14 +59,14 @@ const SelectionScreen = () => {
         <CustomInput placeholder = "Search" value = {searchInterest} setValue={setSearchInterest} />
 
         <View style={styles.buttons}>
-            <ToggleButton text="Asian food" onPress={addInterest} widthSize= '40%'/>
-            <ToggleButton text="chown mein" onPress={addInterest} widthSize= '55%'/>
-            <ToggleButton text="8" onPress={addInterest} widthSize= '35%'/>
-            <ToggleButton text="methanytmine" onPress={addInterest} widthSize= '63%'/>
-            <ToggleButton text="lean" onPress={addInterest} widthSize= '64%'/>
-            <ToggleButton text="vegan" onPress={addInterest} widthSize= '32%'/>
-            <ToggleButton text="temp" onPress={addInterest} widthSize= '32%'/>
-            <ToggleButton text="something" onPress={addInterest} widthSize= '64%'/>
+            <ToggleButton text="Asian food" onPress={editInterest} widthSize= '40%'/>
+            <ToggleButton text="chown mein" onPress={editInterest} widthSize= '55%'/>
+            <ToggleButton text="8" onPress={editInterest} widthSize= '35%'/>
+            <ToggleButton text="methanytmine" onPress={editInterest} widthSize= '63%'/>
+            <ToggleButton text="lean" onPress={editInterest} widthSize= '64%'/>
+            <ToggleButton text="vegan" onPress={editInterest} widthSize= '32%'/>
+            <ToggleButton text="temp" onPress={editInterest} widthSize= '32%'/>
+            <ToggleButton text="something" onPress={editInterest} widthSize= '64%'/>
         </View>
 
         <CustomButton text="Submit" onPress={finishSelection} bgColor='black' fgColor='white'/>
