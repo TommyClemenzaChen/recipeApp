@@ -2,9 +2,8 @@ import csv
 import os
 from PyPDF2 import PdfReader
 import pandas
-
 import fitz
-from PIL import Image
+
 
 
 
